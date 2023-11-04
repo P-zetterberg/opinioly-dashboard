@@ -56,28 +56,17 @@
       <button class="submit" on:submit={handleLogin}>Sign in</button>
     </form>
     <span class="login__redirect"
-      >Don't have an account? <a href="#">Sign up here</a></span
+      >Don't have an account? <a href="/register">Sign up here</a></span
     >
   </div>
 </main>
 
 <style lang="scss">
-  :global(body) {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    background: #f5f6f8;
-  }
-  * {
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
 
     form {
       display: flex;

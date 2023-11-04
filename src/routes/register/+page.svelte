@@ -65,7 +65,7 @@
       </div>
 
       <div class="form__item">
-        <label for="password">Password *</label>
+        <label for="password">Password </label>
         <input
           class="form__input"
           required
@@ -78,28 +78,17 @@
       <button class="submit" on:submit={handleRegister}>Sign up</button>
     </form>
     <span class="login__redirect"
-      >Already got an account? <a href="#">Login here</a></span
+      >Already got an account? <a href="/login">Login here</a></span
     >
   </div>
 </main>
 
 <style lang="scss">
-  :global(body) {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    background: #f5f6f8;
-  }
-  * {
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
 
     form {
       display: flex;
@@ -130,6 +119,11 @@
     }
     label {
       margin-bottom: 0;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      max-width: calc(50% - 0.25em);
     }
   }
   .form__item {
