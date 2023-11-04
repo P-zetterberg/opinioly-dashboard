@@ -1,6 +1,6 @@
 <script>
   import "../global.scss"
-  import brandLogo from "../assets/opinioly_gap_bigger.svg"
+  import brandLogo from "../assets/opinioly_small_height.svg"
 </script>
 
 <svelte:head>
@@ -12,7 +12,7 @@
   />
 </svelte:head>
 <nav>
-  <img src={brandLogo} width="150" height="75" alt="brand logo" />
+  <img src={brandLogo} width="150" alt="brand logo" />
   <a href="/">Home</a>
   <a href="/about">About</a>
   <a href="/settings">Settings</a>

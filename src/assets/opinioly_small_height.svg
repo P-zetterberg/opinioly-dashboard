@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="83" viewBox="0 0 250 83">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c2ebd1;
+      }
+
+      .cls-2 {
+        font-size: 75px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #1e1e1f;
+        font-family: "Microsoft PhagsPa";
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        font-size: 50px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="83" height="83"/>
+  <text id="O" class="cls-2" x="12" y="68">O</text>
+  <text id="pinioly" class="cls-3" x="88.5" y="54.5">pinioly</text>
+</svg>
