@@ -1,5 +1,6 @@
 <script>
   import { goto } from "$app/navigation"
+  import Waves from "../../assets/waves.svelte"
 
   let email = "pontus@zetterberg.io"
   let password = "qew123w2"
@@ -18,7 +19,6 @@
       })
 
       if (response.ok) {
-        const data = await response.json()
         goto("/new-url")
       } else {
       }
@@ -40,7 +40,6 @@
           bind:value={email}
         />
       </div>
-
       <div class="form__item">
         <label for="password">Password:</label>
         <input
@@ -50,7 +49,7 @@
           id="password"
           bind:value={password}
         />
-        <a href="#">Forgot password?</a>
+        <a href="/reset-password" class="forgot">Forgot password?</a>
       </div>
 
       <button class="submit" on:submit={handleLogin}>Sign in</button>
@@ -60,6 +59,7 @@
     >
   </div>
 </main>
+<Waves />
 
 <style lang="scss">
   main {
@@ -67,6 +67,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 999;
+    position: relative;
 
     form {
       display: flex;
@@ -156,5 +158,8 @@
       color: rgb(22, 22, 22);
       font-weight: 600;
     }
+  }
+  .forgot {
+    font-size: 14px;
   }
 </style>

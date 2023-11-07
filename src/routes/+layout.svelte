@@ -12,10 +12,64 @@
   />
 </svelte:head>
 <nav>
-  <img src={brandLogo} width="150" alt="brand logo" />
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/settings">Settings</a>
+  <a href="/"
+    ><img src={brandLogo} width="150" alt="brand logo" class="logo" /></a
+  >
+  <div class="nav__items">
+    <a href="/">Home</a>
+    <a href="/about">Pricing</a>
+    <a href="/settings">Features</a>
+  </div>
+  <div class="nav__ctas">
+    <a href="/login">Sign in</a>
+    <a class="signup" href="/register">Sign up</a>
+  </div>
 </nav>
 
 <slot />
+
+<style lang="scss">
+  nav {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+
+    a {
+      transition: color 0.2s ease-in-out;
+      text-decoration: none;
+      color: rgba(22, 22, 22, 0.699);
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  .logo {
+    cursor: pointer;
+  }
+  .nav__items {
+    display: flex;
+    gap: 2em;
+    margin: 0 auto;
+  }
+  .nav__ctas {
+    display: flex;
+    gap: 2em;
+
+    a:first-child {
+      align-self: center;
+    }
+  }
+  .signup {
+    background-color: #c2ebd1;
+    padding: 0.5em 1em;
+    color: black;
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation"
+  import Waves from "../../assets/waves.svelte"
 
   let email = "pontus@zetterberg.io"
   let password = "qew123w2"
@@ -82,6 +83,7 @@
     >
   </div>
 </main>
+<Waves />
 
 <style lang="scss">
   main {
@@ -89,6 +91,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 999;
+    position: relative;
 
     form {
       display: flex;
