@@ -3,6 +3,7 @@
   import Prism from "prismjs"
 
   export let code = ""
+  export let type = "HTML"
 
   function copyToClipboard() {
     navigator.clipboard
@@ -17,7 +18,7 @@
 </script>
 
 <div class="code-container">
-  <span class="lang">HTML</span>
+  <span class="lang">{type}</span>
   <button on:click={copyToClipboard} class="copy-button">Copy</button>
   <pre class="language-html"><code class="language-html test">
     {@html Prism.highlight(code, Prism.languages["html"])}

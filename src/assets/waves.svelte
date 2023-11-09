@@ -52,7 +52,7 @@
 
 <style>
   .waves {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100vw;
     left: 0;

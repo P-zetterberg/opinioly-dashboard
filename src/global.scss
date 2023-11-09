@@ -10,6 +10,9 @@ body {
   * {
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    p,span,label {
+      font-size: 14px;
+    }
   }
   main {
     height: calc(100vh - 89.9px);
