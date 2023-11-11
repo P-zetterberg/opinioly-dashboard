@@ -5,21 +5,25 @@ export const widgetData = writable({
     {
       msg: "Vi på x AB värnar om våra kunder. feedback hjälper oss göra det ännu bättre!",
       type: "description",
+      name: "Description / Text",
     },
     {
       type: "dropdown",
-      label: "Feedback category12PZ",
+      name: "Dropdown",
+      label: "Feedback category12",
       options: ["Design", "Experience", "Products", "Other"],
-      required: true,
+      required: false,
     },
     {
       type: "textinput",
+      name: "Input",
       label: "Name",
       required: false,
       placeholder: "Enter your name",
     },
     {
       type: "textarea",
+      name: "Textarea",
       label: "Feedback",
       required: false,
     },

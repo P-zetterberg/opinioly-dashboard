@@ -8,8 +8,7 @@
   let id = "b303f712-1b7c-4165-a054-b733be36c996"
   let styles =
     "--primary-color:red;--primary-color:red;--primary-color:red;--primary-color:red;--primary-color:red;--primary-color:red;"
-  const URL =
-    "https://foebhsyjevotvveomyop.supabase.co/storage/v1/object/public/widget/opinioly.js"
+  const URL = "http://localhost:3000/widget/opinioly.js"
   const script = `<script defer src=${URL}>
     <${"/"}script>`
   const code = `
@@ -28,8 +27,8 @@
 <main>
   <h1>Dashboard</h1>
   <div class="container">
-    <div class="form__container">
-      <span class="preview">Preview</span>
+    <div class="left__panel">
+      <span class="badge">Preview</span>
       <opinioly-widget
         bind:this={element}
         type="web"
@@ -41,7 +40,6 @@
       <CodeHighlight {code} /> -->
     </div>
     <div class="right__panel">
-      <span class="preview"> Settings </span>
       <RightSide {element} />
     </div>
   </div>
@@ -64,17 +62,20 @@
   .right__panel {
     position: relative;
     width: 100%;
+    min-width: 432px;
     background-color: #fcfcfc;
     display: flex;
     flex-direction: column;
     padding: 1em;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
-    height: 1000px;
+    height: 100%;
+    max-height: 630.6px;
+    overflow-x: scroll;
   }
   h1 {
     margin-top: 1em;
   }
-  .form__container {
+  .left__panel {
     // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 20px;
     width: fit-content;
     height: fit-content;
@@ -85,7 +86,7 @@
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
     position: relative;
   }
-  .preview {
+  .badge {
     position: absolute;
     top: 5px;
     margin: 0;
