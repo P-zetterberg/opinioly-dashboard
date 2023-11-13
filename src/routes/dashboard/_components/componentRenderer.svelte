@@ -1,5 +1,7 @@
 <script>
-  import TextArea from "./_components/textArea.svelte"
+  import Input from "./textArea.svelte"
+  import Description from "./description.svelte"
+  import Dropdown from "./dropdown.svelte"
   import { slide } from "svelte/transition"
   import { onMount } from "svelte"
 
@@ -15,16 +17,27 @@
   export let i
 
   let isOpen = false
-  let textArea = {
+  let propsForAll = {
     id,
+  }
+  let input = {
+    ...propsForAll,
     label,
     placeholder,
     required,
-    name,
-    element,
+  }
+  let description = {
+    ...propsForAll,
+    msg,
+  }
+  let dropdown = {
+    ...propsForAll,
+    label,
+    options,
+    required,
   }
   onMount(() => {
-    if (i === 0) isOpen = true
+    if (i === 1) isOpen = true
   })
 </script>
 
@@ -37,20 +50,19 @@
   >{name}
   <span class="material-symbols-outlined icon">
     {isOpen ? "expand_less" : "expand_more"}
-  </span></label
->
+  </span>
+</label>
 {#if isOpen}
   <div transition:slide class="shadow">
     <div class="row">
       {#if type === "textinput"}
-        <!-- <TextInput {label} {placeholder} {required} {i} /> -->
+        <Input {...input} {element} />
       {:else if type === "textarea"}
-        <TextArea {...textArea} />
-        <!-- <TextArea {i} {label} {placeholder} {required} {name} {element} /> -->
+        <Input {...input} {element} />
       {:else if type === "dropdown"}
-        <!-- <Dropdown {label} {required} {options} {i} /> -->
+        <Dropdown {...dropdown} {element} />
       {:else}
-        <!-- <Description {msg} /> -->
+        <Description {...description} {element} />
       {/if}
     </div>
   </div>
@@ -81,9 +93,10 @@
     flex-direction: row;
     gap: 1em;
     flex-wrap: wrap;
-    margin-top: 0.5em;
+    margin-top: 1em;
     padding-left: 0.5em;
-    padding-bottom: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 1em;
   }
   // .shadow {
   //   box-shadow: 5px 4px 3px -1px #f3f3f3, -5px 2px 3px -1px #f3f3f3;

@@ -6,7 +6,7 @@
     updateArrayOrder,
   } from "./dashBoardStore.js"
   import Sortable from "sortablejs/modular/sortable.complete.esm.js?module"
-  import ComponentRenderer from "./componentRenderer.svelte"
+  import ComponentRenderer from "./_components/componentRenderer.svelte"
   import { onMount } from "svelte"
   let foo
   export let element = null
@@ -45,17 +45,6 @@
   </div>
 </div>
 <div class="elements" bind:this={foo}>
-  <!-- <div class="item">
-    <label for="desc">Description</label>
-    <textarea
-      spellcheck="false"
-      class="element"
-      id="desc"
-      value={$widgetData.data[0].msg}
-      on:input={(e) => updateDataItemKey(0, "msg", e.target.value, element)}
-    />
-  </div> -->
-
   {#each $widgetData.data as item, i (item.id)}
     <div class="item" data-id={item.id}>
       <ComponentRenderer {i} {...item} {element} />
@@ -81,13 +70,17 @@
     padding-top: 2em;
     display: flex;
     flex-wrap: wrap;
-    gap: 1em;
   }
   .item {
     display: flex;
     flex-direction: column;
     width: 100%;
+    border: 1px solid #dbdee4;
     //box-shadow: 5px 4px 3px -1px #f3f3f3, -5px 2px 3px -1px #f3f3f3;
+    border-top: none;
+    &:first-child {
+      border-top: 1px solid #dbdee4;
+    }
   }
 
   .input__container {
@@ -98,19 +91,5 @@
       font-weight: 600;
       align-self: start;
     }
-  }
-
-  textarea {
-    border: none;
-    border-radius: var(--border-radius);
-    width: 100%;
-    resize: vertical;
-    min-height: 75px;
-    font-size: 14px;
-    font-weight: 300;
-  }
-  textarea:focus {
-    outline: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.5);
   }
 </style>

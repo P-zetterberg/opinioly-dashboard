@@ -1,40 +1,19 @@
 <script>
   import { updateDataItemKey } from "../dashBoardStore"
 
-  export let label = ""
-  export let required = false
-  export let placeholder = ""
-  export let id = 0
+  export let id
   export let element
+  export let msg
 </script>
 
 <div class="row__item">
-  <label for="textarea">Label</label>
-  <input
+  <textarea
+    spellcheck="false"
     class="input"
-    value={label}
-    on:input={(e) => updateDataItemKey(id, "label", e.target.value, element)}
+    id="desc"
+    value={msg}
+    on:input={(e) => updateDataItemKey(id, "msg", e.target.value, element)}
   />
-</div>
-<div class="row__item">
-  <label for="textarea">Placeholder</label>
-  <input
-    class="input"
-    value={placeholder}
-    on:input={(e) =>
-      updateDataItemKey(id, "placeholder", e.target.value, element)}
-  />
-</div>
-<div class="required">
-  <input
-    type="checkbox"
-    id="required{id}"
-    name="required"
-    bind:checked={required}
-    on:change={(e) =>
-      updateDataItemKey(id, "required", e.target.checked, element)}
-  />
-  <label for="required{id}"> Required</label>
 </div>
 
 <style lang="scss">
@@ -43,7 +22,6 @@
     border-radius: 0px;
     border-color: lightgrey;
     background: #ffffff;
-    height: 32px;
     padding: 5px;
     transition: border-color ease-in 150ms;
     font-size: 14px;
@@ -69,6 +47,7 @@
   .row__item {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
   .required {
     align-self: flex-end;
@@ -79,5 +58,18 @@
   }
   .closed {
     display: none;
+  }
+  textarea {
+    border: none;
+    border-radius: var(--border-radius);
+    width: 100%;
+    resize: vertical;
+    min-height: 100px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  textarea:focus {
+    outline: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.5);
   }
 </style>
