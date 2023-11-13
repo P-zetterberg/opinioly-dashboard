@@ -22,6 +22,7 @@
   },
   "type": "module",
   "dependencies": {
-    "prismjs": "^1.29.0"
+    "prismjs": "^1.29.0",
+    "sortablejs": "^1.15.0"
   }
 }
