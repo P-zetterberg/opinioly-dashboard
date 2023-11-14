@@ -11,4 +11,4 @@
 //       data: res,
 //     }
 //   }
-// }
+// }  import { createClient } from "@supabase/supabase-js"

@@ -1,16 +1,20 @@
-<script lang="ts">
+<script>
   import { goto } from "$app/navigation"
   import Waves from "../../assets/waves.svelte"
+  import { createClient } from "@supabase/supabase-js"
+
+  const supabaseUrl = "https://foebhsyjevotvveomyop.supabase.co"
+  //This key is safe to expose on the client
+  const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvZWJoc3lqZXZvdHZ2ZW9teW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTczNzA2ODYsImV4cCI6MjAxMjk0NjY4Nn0.scxVcnN2Q1Gx2cK38o-zn4sdUAy21Z63pRwaphbVLO0"
+  const supabase = createClient(supabaseUrl, supabaseKey)
 
   let email = "pontus@zetterberg.io"
   let password = "qew123w2"
   let message = ""
   let firstname = ""
-  let lastname = ""
 
   async function handleRegister() {
-    const credentials = { email, password, firstname, lastname }
-
     try {
       const response = await fetch("http://localhost:3000/auth/register", {
         method: "POST",
@@ -32,27 +36,15 @@
   <div class="form__container">
     <form>
       <h1>Create account</h1>
-      <div class="form__name">
-        <div>
-          <label for="firstname">First Name *</label>
-          <input
-            class="form__input"
-            required
-            type="text"
-            id="firstname"
-            bind:value={firstname}
-          />
-        </div>
-        <div>
-          <label for="lastname">Last Name *</label>
-          <input
-            class="form__input"
-            required
-            type="text"
-            id="lastname"
-            bind:value={lastname}
-          />
-        </div>
+      <div class="form__item">
+        <label for="firstname">First Name *</label>
+        <input
+          class="form__input"
+          required
+          type="text"
+          id="firstname"
+          bind:value={firstname}
+        />
       </div>
       <div class="form__item">
         <label for="email">Email *</label>
@@ -114,21 +106,6 @@
   }
   h1 {
     margin-bottom: 0.5em;
-  }
-  .form__name {
-    display: flex;
-    gap: 0.5em;
-    input {
-      margin-top: 0.2em;
-    }
-    label {
-      margin-bottom: 0;
-    }
-    div {
-      display: flex;
-      flex-direction: column;
-      max-width: calc(50% - 0.25em);
-    }
   }
   .form__item {
     display: flex;

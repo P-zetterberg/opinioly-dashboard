@@ -17,8 +17,9 @@
   >
   <div class="nav__items">
     <a href="/">Home</a>
-    <a href="/about">Pricing</a>
-    <a href="/settings">Features</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/features">Features</a>
+    <a href="/dashboard">Dashboard</a>
   </div>
   <div class="nav__ctas">
     <a href="/login">Sign in</a>

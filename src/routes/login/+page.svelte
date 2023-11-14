@@ -1,34 +1,48 @@
 <script>
   import { goto } from "$app/navigation"
   import Waves from "../../assets/waves.svelte"
+  import { createClient } from "@supabase/supabase-js"
+  import { onMount } from "svelte"
+
+  const supabaseUrl = "https://foebhsyjevotvveomyop.supabase.co"
+  //This key is safe to expose on the client
+  const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvZWJoc3lqZXZvdHZ2ZW9teW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTczNzA2ODYsImV4cCI6MjAxMjk0NjY4Nn0.scxVcnN2Q1Gx2cK38o-zn4sdUAy21Z63pRwaphbVLO0"
+  const supabase = createClient(supabaseUrl, supabaseKey)
 
   let email = "pontus@zetterberg.io"
   let password = "qew123w2"
   let message = ""
 
   async function handleLogin() {
-    const credentials = { email, password }
-
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
       })
+      let status = data?.user ? 200 : 401
+      let resData = status === 200 ? data : error
+      try {
+        const response = await fetch("http://localhost:3000/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ resData }),
+        })
 
-      if (response.ok) {
-        goto("/new-url")
-      } else {
-      }
+        if (response.ok) {
+          goto("/dashboard")
+        }
+      } catch (error) {}
     } catch (error) {}
   }
+  onMount(async () => {})
 </script>
 
 <main>
   <div class="form__container">
-    <form>
+    <form on:submit={handleLogin}>
       <h1>Sign in</h1>
       <div class="form__item">
         <label for="email">Email</label>
@@ -52,8 +66,11 @@
         <a href="/reset-password" class="forgot">Forgot password?</a>
       </div>
 
-      <button class="submit" on:submit={handleLogin}>Sign in</button>
+      <button class="submit" type="submit">Sign in</button>
     </form>
+    <button on:click={async () => await supabase.auth.signOut()}
+      >Sign out</button
+    >
     <span class="login__redirect"
       >Don't have an account? <a href="/register">Sign up here</a></span
     >

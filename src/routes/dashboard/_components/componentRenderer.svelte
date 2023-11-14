@@ -51,6 +51,18 @@
   <span class="material-symbols-outlined icon">
     {isOpen ? "expand_less" : "expand_more"}
   </span>
+  <span
+    role="button"
+    on:keypress={() => console.log("MENU")}
+    tabindex="0"
+    on:click={(e) => {
+      console.log("MENU")
+      e.stopPropagation()
+    }}
+    class="material-symbols-outlined icon"
+  >
+    more_vert
+  </span>
 </label>
 {#if isOpen}
   <div transition:slide class="shadow">
@@ -78,6 +90,20 @@
     .icon {
       position: absolute;
       right: 5px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 150ms ease-in-out;
+      height: 100%;
+
+      &:nth-child(2) {
+        right: 30px;
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
+    &:hover .icon:nth-child(1) {
+      opacity: 1;
     }
   }
   .handle {

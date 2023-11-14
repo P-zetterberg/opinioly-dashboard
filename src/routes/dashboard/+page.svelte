@@ -2,7 +2,6 @@
   import Waves from "../../assets/waves.svelte"
   import RightSide from "./rightSide.svelte"
   import { widgetData } from "./dashBoardStore.js"
-  // import { page } from "$app/stores"
 
   let element
   let id = "b303f712-1b7c-4165-a054-b733be36c996"
@@ -18,7 +17,6 @@
   </op-widget>`
 </script>
 
-<!-- https://foebhsyjevotvveomyop.supabase.co/storage/v1/object/public/widget/opinioly.js -->
 <svelte:head>
   <title>Opinioly | Dashboard - New widget</title>
   <script async src={URL}></script>
