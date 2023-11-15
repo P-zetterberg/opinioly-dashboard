@@ -1,7 +1,9 @@
 <script>
-  import Waves from "../../assets/waves.svelte"
+  import Waves from "../../../assets/waves.svelte"
   import RightSide from "./rightSide.svelte"
   import { widgetData } from "./dashBoardStore.js"
+  import { onMount } from "svelte"
+  import { browser } from "$app/environment"
 
   let element
   let id = "b303f712-1b7c-4165-a054-b733be36c996"
@@ -15,11 +17,15 @@
         widgetId="${id}"
         styles="${styles}">
   </op-widget>`
+
+  onMount(() => {})
 </script>
 
 <svelte:head>
   <title>Opinioly | Dashboard - New widget</title>
-  <script async src={URL}></script>
+  {#if browser && !customElements.get("opinioly-widget")}
+    <script async src={URL}></script>
+  {/if}
 </svelte:head>
 
 <main>
@@ -75,14 +81,15 @@
   }
   .left__panel {
     // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 20px;
-    width: fit-content;
-    height: fit-content;
+    width: 432px;
+    height: 630.6px;
     background-color: #fcfcfc;
     display: flex;
     flex-direction: column;
     padding: 1em;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
     position: relative;
+    flex-shrink: 0;
   }
   .badge {
     position: absolute;

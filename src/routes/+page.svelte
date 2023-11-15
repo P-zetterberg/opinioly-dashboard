@@ -1,11 +1,14 @@
 <script>
   import Waves from "../assets/waves.svelte"
+  export let data
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+{#if data.session}
+  <h1>Welcome {data.session.user.email}</h1>
+{:else}
+  <h1>Welcome to SvelteKit</h1>
+{/if}
+
 <Waves />
 
 <style>

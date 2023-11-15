@@ -28,7 +28,7 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ resData }),
+          body: JSON.stringify({ email, password }),
         })
 
         if (response.ok) {
@@ -42,7 +42,7 @@
 
 <main>
   <div class="form__container">
-    <form on:submit={handleLogin}>
+    <form action="?/login" method="POST">
       <h1>Sign in</h1>
       <div class="form__item">
         <label for="email">Email</label>
@@ -51,6 +51,7 @@
           required
           type="email"
           id="email"
+          name="email"
           bind:value={email}
         />
       </div>
@@ -61,6 +62,7 @@
           required
           type="password"
           id="password"
+          name="password"
           bind:value={password}
         />
         <a href="/reset-password" class="forgot">Forgot password?</a>

@@ -22,6 +22,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@supabase/auth-helpers-sveltekit": "^0.10.7",
+    "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.38.4",
     "prismjs": "^1.29.0",
     "sortablejs": "^1.15.0"

@@ -1,6 +1,11 @@
 <script>
   import "../global.scss"
   import brandLogo from "../assets/opinioly_small_height.svg"
+
+  export let data
+
+  let user = data?.session?.user?.email.split("@")[0]
+  let username = user.charAt(0).toUpperCase() + user.slice(1)
 </script>
 
 <svelte:head>
@@ -9,6 +14,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&family=League+Gothic&family=Montserrat:wght@100;300&family=Poppins:wght@100;200;300;400;500;600;700;900&family=Roboto:wght@300;400;500;700;900&display=swap"
     rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
   />
 </svelte:head>
 <nav>
@@ -21,15 +30,28 @@
     <a href="/features">Features</a>
     <a href="/dashboard">Dashboard</a>
   </div>
-  <div class="nav__ctas">
-    <a href="/login">Sign in</a>
-    <a class="signup" href="/register">Sign up</a>
-  </div>
+  {#if data?.session}
+    <form action="/logout" method="POST">
+      <button style="height:25px ;" type="submit">Logout</button>
+    </form>
+    <h4 class="welcome">
+      Welcome, {username}
+      <span class="material-symbols-outlined icon"> expand_more </span>
+    </h4>
+  {:else}
+    <div class="nav__ctas">
+      <a href="/login">Sign in</a>
+      <a class="signup" href="/register">Sign up</a>
+    </div>
+  {/if}
 </nav>
 
 <slot />
 
 <style lang="scss">
+  h4 {
+    margin: 0;
+  }
   nav {
     display: flex;
     align-items: center;
@@ -72,5 +94,9 @@
     &:hover {
       opacity: 0.85;
     }
+  }
+  .welcome {
+    display: flex;
+    cursor: pointer;
   }
 </style>
