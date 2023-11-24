@@ -4,6 +4,7 @@
   import Dropdown from "./dropdown.svelte"
   import { slide } from "svelte/transition"
   import { onMount } from "svelte"
+  import { widgetData } from "../dashBoardStore.js"
 
   export let element
   export let type = ""
@@ -36,6 +37,13 @@
     options,
     required,
   }
+  let showMenu = false
+
+  function handleDelete() {
+    $widgetData.data = $widgetData.data.filter((item) => item.id !== id)
+    element.refreshData(JSON.stringify({ data: $widgetData.data }), 2)
+  }
+  function handleAdd() {}
   // onMount(() => {
   //   if (i === 1) isOpen = true
   // })
@@ -53,10 +61,10 @@
   </span>
   <span
     role="button"
-    on:keypress={() => console.log("MENU")}
+    on:keypress={() => (showMenu = !showMenu)}
     tabindex="0"
     on:click={(e) => {
-      console.log("MENU")
+      showMenu = !showMenu
       e.stopPropagation()
     }}
     class="material-symbols-outlined icon"
@@ -64,6 +72,12 @@
     more_vert
   </span>
 </label>
+{#if showMenu}
+  <div class="menu">
+    <span on:click={handleDelete}>Delete element</span>
+  </div>
+{/if}
+
 {#if isOpen}
   <div transition:slide class="shadow">
     <div class="row">
@@ -123,6 +137,14 @@
     padding-left: 0.5em;
     padding-right: 0.5em;
     padding-bottom: 1em;
+  }
+  .menu {
+    position: absolute;
+    z-index: 999;
+    height: auto;
+    min-height: 200px;
+    background: rgb(104, 104, 255);
+    right: 17px;
   }
   // .shadow {
   //   box-shadow: 5px 4px 3px -1px #f3f3f3, -5px 2px 3px -1px #f3f3f3;
