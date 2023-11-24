@@ -17,3 +17,13 @@ body {
   main {
     height: calc(100vh - 89.9px);
   }
+  .clr-field button {
+    width: 100% !important;
+    height: 100% !important;
+ 
+  }
+  .clr-field {
+    & {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+  }

@@ -36,9 +36,9 @@
     options,
     required,
   }
-  onMount(() => {
-    if (i === 1) isOpen = true
-  })
+  // onMount(() => {
+  //   if (i === 1) isOpen = true
+  // })
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->

@@ -1,14 +1,13 @@
 <script>
   import Waves from "../../../assets/waves.svelte"
   import RightSide from "./rightSide.svelte"
-  import { widgetData } from "./dashBoardStore.js"
+  import { widgetData, colorData } from "./dashBoardStore.js"
   import { onMount } from "svelte"
   import { browser } from "$app/environment"
 
   let element
   let id = "b303f712-1b7c-4165-a054-b733be36c996"
-  let styles =
-    "--primary-color:red;--primary-color:red;--primary-color:red;--primary-color:red;--primary-color:red;--primary-color:red;"
+  let styles = ""
   const URL = "http://localhost:3000/widget/opinioly.js"
   const script = `<script defer src=${URL}>
     <${"/"}script>`
@@ -17,6 +16,15 @@
         widgetId="${id}"
         styles="${styles}">
   </op-widget>`
+
+  $: Object.entries($colorData).forEach(([key, value]) => {
+    if (styles.includes(`${key}:`)) {
+      const regex = new RegExp(`${key}:\\s*[^;]+;`)
+      styles = styles.replace(regex, `${key}: ${value};`)
+    } else {
+      styles = styles.concat(`${key}: ${value};`)
+    }
+  })
 
   onMount(() => {})
 </script>
@@ -38,6 +46,7 @@
         type="web"
         widgetId="214a858e-aa49-4165-9bc6-da06c1136755"
         webData={JSON.stringify($widgetData)}
+        style={styles}
       />
 
       <!-- <CodeHighlight type="Script" code={script} />
@@ -106,7 +115,7 @@
   }
   opinioly-widget::part(main) {
     position: static;
-    box-shadow: none;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   }
   opinioly-widget::part(toggle) {
     position: static;
@@ -114,5 +123,6 @@
     margin: 1em 0;
     margin-left: auto;
     margin-bottom: 0.6em;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   }
 </style>

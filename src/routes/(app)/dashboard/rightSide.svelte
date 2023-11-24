@@ -4,13 +4,17 @@
     updateDataItemKey,
     updateItem,
     updateArrayOrder,
+    colorData,
+    addVar,
   } from "./dashBoardStore.js"
   import Sortable from "sortablejs/modular/sortable.complete.esm.js?module"
   import ComponentRenderer from "./_components/componentRenderer.svelte"
   import { onMount } from "svelte"
+  import Settings from "./_components/settings.svelte"
+
   let foo
   export let element = null
-  onMount(() => {
+  onMount(async () => {
     Sortable.create(foo, {
       group: {
         name: "foo",
@@ -32,10 +36,7 @@
 <div class="settings__container">
   <p class="badge title">Settings</p>
   <div class="settings">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, iusto?
-    Animi molestias illum possimus quis laudantium ab, quos accusantium autem
-    facere maxime officia ipsam officiis ipsum veritatis, pariatur nostrum
-    temporibus?
+    <Settings {element} />
   </div>
 </div>
 <div class="elements" bind:this={foo}>
@@ -76,14 +77,10 @@
       border-top: 1px solid #dbdee4;
     }
   }
-
-  .input__container {
+  .settings {
     display: flex;
-    flex-direction: column;
-
-    label {
-      font-weight: 600;
-      align-self: start;
-    }
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em;
   }
 </style>

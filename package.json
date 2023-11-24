@@ -22,6 +22,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@melloware/coloris": "^0.22.0",
     "@supabase/auth-helpers-sveltekit": "^0.10.7",
     "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.38.4",

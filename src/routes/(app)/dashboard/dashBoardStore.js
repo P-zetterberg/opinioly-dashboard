@@ -32,8 +32,12 @@ export const widgetData = writable({
       required: false,
     },
   ],
-  buttonText: "Submit",
+  mainTitle: "Give feedback12",
+  buttonText: "Submit12",
+  toggleText: "Feedback",
 })
+
+export const colorData = writable({})
 export const widget = writable()
 
 export function updateDataItemKey(index, key, newValue, element) {
@@ -60,5 +64,14 @@ export function updateArrayOrder(orderArr, element) {
     )
     element.refreshData(JSON.stringify({ data: sortedData }), 2)
     return { ...currentData, data: sortedData }
+  })
+}
+export function addVar(key, value) {
+  colorData.update((oldValue) => {
+    // Create a new object with the existing values and the new key-value pair
+
+    const newValue = { ...oldValue, [key]: value }
+
+    return newValue
   })
 }
