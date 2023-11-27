@@ -88,11 +88,7 @@
   </div>
 {/if}
 
-<div
-  transition:slide
-  class="shadow"
-  style={isOpen ? "display:block;" : "display:none;"}
->
+<div class="shadow {isOpen ? 'show' : 'hide'}">
   <div class="row">
     {#if type === "textinput"}
       <Input {...input} {element} />
@@ -185,6 +181,12 @@
       align-self: center;
       opacity: 0.7;
     }
+  }
+  .show {
+    display: block;
+  }
+  .hide {
+    display: none;
   }
   // .shadow {
   //   box-shadow: 5px 4px 3px -1px #f3f3f3, -5px 2px 3px -1px #f3f3f3;

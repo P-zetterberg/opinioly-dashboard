@@ -4,8 +4,6 @@
   export let id
   export let element
   export let msg
-
-  $: console.log(msg)
 </script>
 
 <div class="row__item">

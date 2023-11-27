@@ -120,7 +120,9 @@
     margin-top: 0.3em;
     height: min-content;
     cursor: pointer;
-    transition: rotate 200ms ease-in-out, opacity 200ms ease-in-out;
+    transition:
+      rotate 200ms ease-in-out,
+      opacity 200ms ease-in-out;
     &.remove:hover {
       rotate: 180deg;
       opacity: 0.5;
@@ -136,13 +138,16 @@
   .inputs {
     display: flex;
     flex-direction: column;
-    gap: 0em;
+    gap: 0.2em;
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
     .flex {
-      .input {
-        border-bottom: none;
-      }
       &:last-child .input {
         border-bottom: 1px solid lightgrey;
+        &:focus {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        }
       }
     }
   }
