@@ -8,7 +8,7 @@
   let element
   let id = "b303f712-1b7c-4165-a054-b733be36c996"
   let styles = ""
-  const URL = "http://localhost:3000/widget/opinioly.js"
+  const URL = "/opinioly.js"
   const script = `<script defer src=${URL}>
     <${"/"}script>`
   const code = `
@@ -80,7 +80,9 @@
     display: flex;
     flex-direction: column;
     padding: 1em;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 2px 10px 0 rgba(0, 0, 0, 0.1),
+      0 2px 5px 0 rgba(0, 0, 0, 0.2);
     height: 100%;
     max-height: 630.6px;
     overflow-x: scroll;
@@ -96,7 +98,9 @@
     display: flex;
     flex-direction: column;
     padding: 1em;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 2px 10px 0 rgba(0, 0, 0, 0.1),
+      0 2px 5px 0 rgba(0, 0, 0, 0.2);
     position: relative;
     flex-shrink: 0;
   }
@@ -115,7 +119,9 @@
   }
   opinioly-widget::part(main) {
     position: static;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 2px 10px 0 rgba(0, 0, 0, 0.1),
+      0 2px 5px 0 rgba(0, 0, 0, 0.2);
   }
   opinioly-widget::part(toggle) {
     position: static;
@@ -123,6 +129,8 @@
     margin: 1em 0;
     margin-left: auto;
     margin-bottom: 0.6em;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 2px 10px 0 rgba(0, 0, 0, 0.1),
+      0 2px 5px 0 rgba(0, 0, 0, 0.2);
   }
 </style>
