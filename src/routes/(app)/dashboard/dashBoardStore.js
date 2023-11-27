@@ -1,5 +1,7 @@
 import { writable } from "svelte/store"
+import { elementsData } from "$lib/elementData.js"
 
+let id = 4
 export const widgetData = writable({
   data: [
     {
@@ -73,5 +75,15 @@ export function addVar(key, value) {
     const newValue = { ...oldValue, [key]: value }
 
     return newValue
+  })
+}
+export function addElement(key, element) {
+  let elementType = elementsData[key]
+  elementType.id = id
+  widgetData.update((currentData) => {
+    const newDataArray = [...currentData.data, elementType]
+    element.refreshData(JSON.stringify({ data: newDataArray }), 2)
+    id++
+    return { ...currentData, data: newDataArray }
   })
 }

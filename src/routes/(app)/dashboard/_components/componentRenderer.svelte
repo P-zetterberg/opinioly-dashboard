@@ -5,6 +5,7 @@
   import { slide } from "svelte/transition"
   import { onMount } from "svelte"
   import { widgetData } from "../dashBoardStore.js"
+  import { clickOutside } from "$lib/clickOutside.js"
 
   export let element
   export let type = ""
@@ -15,7 +16,7 @@
   export let options = []
   export let name = ""
   export let id
-  export let i
+  // export let i
 
   let isOpen = false
   let propsForAll = {
@@ -73,8 +74,15 @@
   </span>
 </label>
 {#if showMenu}
-  <div class="menu">
-    <span on:click={handleDelete}>Delete element</span>
+  <div
+    class="menu"
+    use:clickOutside
+    on:click_outside={() => (showMenu = !showMenu)}
+  >
+    <button on:click={handleDelete}>
+      <span class="material-symbols-outlined"> delete </span>
+      <span>Delete {name}</span>
+    </button>
   </div>
 {/if}
 
@@ -141,10 +149,36 @@
   .menu {
     position: absolute;
     z-index: 999;
-    height: auto;
-    min-height: 200px;
-    background: rgb(104, 104, 255);
-    right: 17px;
+    height: fit-content;
+    background: #f3f4f6;
+    right: 65px;
+    border: 1px solid lightgrey;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    button {
+      all: unset;
+      cursor: pointer;
+      height: 30px;
+      padding: 0.25em 0.5em;
+      font-size: 14px;
+      border-bottom: 1px solid lightgrey;
+      background-color: #f3f4f6;
+      display: flex;
+      gap: 0.25em;
+      width: auto;
+      max-width: 213px;
+      &:hover {
+        background-color: #f0f0f0;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    span {
+      align-self: center;
+      opacity: 0.7;
+    }
   }
   // .shadow {
   //   box-shadow: 5px 4px 3px -1px #f3f3f3, -5px 2px 3px -1px #f3f3f3;

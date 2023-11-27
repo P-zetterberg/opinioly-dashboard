@@ -1,12 +1,5 @@
 <script>
-  import {
-    widgetData,
-    updateDataItemKey,
-    updateItem,
-    updateArrayOrder,
-    colorData,
-    addVar,
-  } from "../dashBoardStore"
+  import { widgetData, updateItem, addVar } from "../dashBoardStore"
   import { onMount } from "svelte"
   import "@melloware/coloris/dist/coloris.css"
 
@@ -40,6 +33,11 @@
       defaultColor: "#000000",
       theme: "polaroid",
     })
+    Coloris({
+      el: "#coloris-bg-color",
+      defaultColor: "#f3f4f6",
+      theme: "polaroid",
+    })
   })
 </script>
 
@@ -65,7 +63,17 @@
     />
   </div>
   <div class="flex-col">
-    <label for="error">Submit color</label>
+    <label for="coloris-bg-color">Background</label>
+    <input
+      type="text"
+      id="coloris-bg-color"
+      class="input error"
+      value="#f3f4f6"
+      on:input={(e) => addVar("--background", e.target.value)}
+    />
+  </div>
+  <div class="flex-col">
+    <label for="error">Button text</label>
     <input
       type="text"
       id="coloris-submit-text"
@@ -75,7 +83,7 @@
     />
   </div>
   <div class="flex-col">
-    <label for="error">Submit background</label>
+    <label for="error">Button background</label>
     <input
       type="text"
       id="coloris-submit-color"
@@ -95,8 +103,6 @@
       on:input={(e) => addVar("--error", e.target.value)}
     />
   </div>
-</div>
-<div class="wrapper">
   <div class="flex-col">
     <label for="title">Title</label>
     <input
@@ -148,7 +154,7 @@
 
 <style lang="scss">
   .input {
-    width: 200px;
+    width: 175px;
     border: 1px solid;
     border-radius: 0px;
     border-color: lightgrey;
@@ -174,7 +180,7 @@
   }
   .primary,
   .error {
-    width: 75px;
+    width: 135px;
   }
   .wrapper {
     display: flex;
