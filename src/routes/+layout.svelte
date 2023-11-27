@@ -5,7 +5,7 @@
   export let data
 
   let user = data?.session?.user?.email.split("@")[0]
-  let username = user.charAt(0).toUpperCase() + user.slice(1)
+  let username = user?.charAt(0).toUpperCase() + user?.slice(1)
 </script>
 
 <svelte:head>
