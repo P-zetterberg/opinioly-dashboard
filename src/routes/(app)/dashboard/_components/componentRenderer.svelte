@@ -55,7 +55,8 @@
   class="title badge handle"
   for="textarea"
   on:click={() => (isOpen = !isOpen)}
-  >{name} -
+  >{name}
+  {#if label?.length || msg.length}-{/if}
   <span style="opacity:0.3;">{label ?? msg.slice(0, 20) + "..."}</span>
 
   <span class="material-symbols-outlined icon">
