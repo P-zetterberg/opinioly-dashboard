@@ -70,9 +70,6 @@
 
       <button class="submit" type="submit">Sign in</button>
     </form>
-    <button on:click={async () => await supabase.auth.signOut()}
-      >Sign out</button
-    >
     <span class="login__redirect"
       >Don't have an account? <a href="/register">Sign up here</a></span
     >
@@ -152,7 +149,9 @@
     letter-spacing: 0.2em;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color ease-in 150ms, opacity ease-in 150ms;
+    transition:
+      background-color ease-in 150ms,
+      opacity ease-in 150ms;
     text-align: center;
     min-height: 45px;
     transition: scale ease-in 150ms;
