@@ -14,7 +14,7 @@ export const widgetData = writable({
       id: 1,
       type: "dropdown",
       name: "Dropdown",
-      label: "Feedback category12",
+      label: "Feedback category",
       options: ["Design", "Experience", "Products", "Other"],
       required: false,
     },
@@ -34,8 +34,8 @@ export const widgetData = writable({
       required: false,
     },
   ],
-  mainTitle: "Give feedback12",
-  buttonText: "Submit12",
+  mainTitle: "Give feedback",
+  buttonText: "Submit",
   toggleText: "Feedback",
 })
 
