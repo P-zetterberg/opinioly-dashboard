@@ -10,7 +10,7 @@
   export let element
   export let type = ""
   export let msg = ""
-  export let label = ""
+  export let label = null
   export let placeholder = ""
   export let required = false
   export let options = []
@@ -44,7 +44,6 @@
     $widgetData.data = $widgetData.data.filter((item) => item.id !== id)
     element.refreshData(JSON.stringify({ data: $widgetData.data }), 2)
   }
-  function handleAdd() {}
   // onMount(() => {
   //   if (i === 1) isOpen = true
   // })
@@ -57,6 +56,9 @@
   for="textarea"
   on:click={() => (isOpen = !isOpen)}
   >{name}
+  {#if label?.length || msg.length}-{/if}
+  <span style="opacity:0.3;">{label ?? msg.slice(0, 20) + "..."}</span>
+
   <span class="material-symbols-outlined icon">
     {isOpen ? "expand_less" : "expand_more"}
   </span>
@@ -86,21 +88,23 @@
   </div>
 {/if}
 
-{#if isOpen}
-  <div transition:slide class="shadow">
-    <div class="row">
-      {#if type === "textinput"}
-        <Input {...input} {element} />
-      {:else if type === "textarea"}
-        <Input {...input} {element} />
-      {:else if type === "dropdown"}
-        <Dropdown {...dropdown} {element} />
-      {:else}
-        <Description {...description} {element} />
-      {/if}
-    </div>
+<div
+  transition:slide
+  class="shadow"
+  style={isOpen ? "display:block;" : "display:none;"}
+>
+  <div class="row">
+    {#if type === "textinput"}
+      <Input {...input} {element} />
+    {:else if type === "textarea"}
+      <Input {...input} {element} />
+    {:else if type === "dropdown"}
+      <Dropdown {...dropdown} {element} />
+    {:else}
+      <Description {...description} {element} />
+    {/if}
   </div>
-{/if}
+</div>
 
 <style lang="scss">
   .badge {
@@ -153,7 +157,9 @@
     background: #f3f4f6;
     right: 65px;
     border: 1px solid lightgrey;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 2px 5px 0 rgba(0, 0, 0, 0.1),
+      0 2px 3px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     button {
