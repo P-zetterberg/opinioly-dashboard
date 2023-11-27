@@ -5,7 +5,7 @@
   export let data
 
   let user = data?.session?.user?.email.split("@")[0]
-  let username = user.charAt(0).toUpperCase() + user.slice(1)
+  let username = user?.charAt(0).toUpperCase() + user?.slice(1)
 </script>
 
 <svelte:head>
@@ -24,6 +24,7 @@
   <a href="/"
     ><img src={brandLogo} width="150" alt="brand logo" class="logo" /></a
   >
+  DEMO
   <div class="nav__items">
     <a href="/">Home</a>
     <a href="/pricing">Pricing</a>

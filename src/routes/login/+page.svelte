@@ -10,8 +10,8 @@
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvZWJoc3lqZXZvdHZ2ZW9teW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTczNzA2ODYsImV4cCI6MjAxMjk0NjY4Nn0.scxVcnN2Q1Gx2cK38o-zn4sdUAy21Z63pRwaphbVLO0"
   const supabase = createClient(supabaseUrl, supabaseKey)
 
-  let email = "pontus@zetterberg.io"
-  let password = "qew123w2"
+  let email = ""
+  let password = ""
   let message = ""
 
   async function handleLogin() {
@@ -70,9 +70,6 @@
 
       <button class="submit" type="submit">Sign in</button>
     </form>
-    <button on:click={async () => await supabase.auth.signOut()}
-      >Sign out</button
-    >
     <span class="login__redirect"
       >Don't have an account? <a href="/register">Sign up here</a></span
     >
@@ -152,7 +149,9 @@
     letter-spacing: 0.2em;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color ease-in 150ms, opacity ease-in 150ms;
+    transition:
+      background-color ease-in 150ms,
+      opacity ease-in 150ms;
     text-align: center;
     min-height: 45px;
     transition: scale ease-in 150ms;
