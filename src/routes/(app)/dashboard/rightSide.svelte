@@ -44,11 +44,13 @@
       {showSettings ? "visibility" : "visibility_off"}
     </span>
   </p>
-  {#if showSettings}
-    <div class="settings" transition:slide>
-      <Settings {element} />
-    </div>
-  {/if}
+
+  <div
+    class="settings"
+    style={showSettings ? "display:block;" : "display:none;"}
+  >
+    <Settings {element} />
+  </div>
 </div>
 <span style="margin-top: 1em; margin-bottom:0.5em;">Add element</span>
 <div class="add__element">

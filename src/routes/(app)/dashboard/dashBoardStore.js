@@ -78,12 +78,12 @@ export function addVar(key, value) {
   })
 }
 export function addElement(key, element) {
-  let elementType = elementsData[key]
-  elementType.id = id
+  let elementType = { ...elementsData[key] }
+  elementType.id = id++
+
   widgetData.update((currentData) => {
     const newDataArray = [...currentData.data, elementType]
     element.refreshData(JSON.stringify({ data: newDataArray }), 2)
-    id++
     return { ...currentData, data: newDataArray }
   })
 }
