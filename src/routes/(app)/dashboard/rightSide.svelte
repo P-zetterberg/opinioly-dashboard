@@ -45,11 +45,15 @@
     </span>
   </p>
 
-  <div class="settings {showSettings ? 'show' : 'hide'}">
-    <Settings {element} />
+  <div class="settings">
+    <Settings {showSettings} {element} />
   </div>
 </div>
-<span style="margin-top: 1em; margin-bottom:0.5em;">Add element</span>
+<span
+  style="margin-bottom:0.5em; {showSettings
+    ? 'margin-top: 1em;'
+    : 'margin-top: 0;'}">Add element</span
+>
 <div class="add__element">
   <button
     class="add__element_btn"
@@ -148,10 +152,10 @@
     flex-wrap: wrap;
     gap: 1em;
   }
-  .show {
-    display: block;
-  }
-  .hide {
-    display: none;
-  }
+  // .show {
+  //   display: block;
+  // }
+  // .hide {
+  //   display: none;
+  // }
 </style>

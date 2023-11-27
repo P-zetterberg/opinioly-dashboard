@@ -88,7 +88,10 @@
   </div>
 {/if}
 
-<div class="shadow {isOpen ? 'show' : 'hide'}">
+<div
+  class="{isOpen ? 'show' : 'hide'} grid"
+  style={isOpen ? "grid-template-rows: 1fr" : "grid-template-rows: 0fr"}
+>
   <div class="row">
     {#if type === "textinput"}
       <Input {...input} {element} />
@@ -141,10 +144,9 @@
     flex-direction: row;
     gap: 1em;
     flex-wrap: wrap;
-    margin-top: 1em;
     padding-left: 0.5em;
     padding-right: 0.5em;
-    padding-bottom: 1em;
+    overflow: hidden;
   }
   .menu {
     position: absolute;
@@ -182,13 +184,15 @@
       opacity: 0.7;
     }
   }
-  .show {
-    display: block;
+  .grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 0.3s ease-out,
+      padding 0.3s ease-out;
+    padding: 0;
+    &.show {
+      padding: 1em 0;
+    }
   }
-  .hide {
-    display: none;
-  }
-  // .shadow {
-  //   box-shadow: 5px 4px 3px -1px #f3f3f3, -5px 2px 3px -1px #f3f3f3;
-  // }
 </style>
