@@ -85,7 +85,7 @@
       0 2px 5px 0 rgba(0, 0, 0, 0.2);
     height: 100%;
     max-height: 630.6px;
-    overflow-x: scroll;
+    overflow-y: scroll;
   }
   h1 {
     margin-top: 1em;
