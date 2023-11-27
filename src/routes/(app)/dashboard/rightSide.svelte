@@ -45,10 +45,7 @@
     </span>
   </p>
 
-  <div
-    class="settings"
-    style={showSettings ? "display:block;" : "display:none;"}
-  >
+  <div class="settings {showSettings ? 'show' : 'hide'}">
     <Settings {element} />
   </div>
 </div>
@@ -150,5 +147,11 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1em;
+  }
+  .show {
+    display: block;
+  }
+  .hide {
+    display: none;
   }
 </style>
