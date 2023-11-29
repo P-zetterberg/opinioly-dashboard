@@ -3,6 +3,7 @@
   import brandLogo from "../assets/opinioly_small_height.svg"
   import { userData } from "../../src/userStore.js"
   import { onMount } from "svelte"
+  import Waves from "../assets/waves.svelte"
 
   export let data
 
@@ -71,6 +72,7 @@
 </nav>
 
 <slot />
+<Waves />
 
 <style lang="scss">
   h4 {

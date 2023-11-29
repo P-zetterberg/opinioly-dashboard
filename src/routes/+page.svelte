@@ -1,5 +1,4 @@
 <script>
-  import Waves from "../assets/waves.svelte"
   import { userData } from "../userStore"
   export let data
 </script>
@@ -9,8 +8,6 @@
 {:else}
   <h1>Welcome to SvelteKit</h1>
 {/if}
-
-<Waves />
 
 <style>
 </style>

@@ -1,6 +1,5 @@
 <script>
   import { goto } from "$app/navigation"
-  import Waves from "../../assets/waves.svelte"
   import { createClient } from "@supabase/supabase-js"
   import { onMount } from "svelte"
 
@@ -75,7 +74,6 @@
     >
   </div>
 </main>
-<Waves />
 
 <style lang="scss">
   main {

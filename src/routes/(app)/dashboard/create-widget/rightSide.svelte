@@ -13,7 +13,7 @@
   import { onMount } from "svelte"
   import Settings from "./_components/settings.svelte"
   import Loading from "$lib/loading.svelte"
-  import { userData } from "../../../userStore.js"
+  import { userData } from "../../../../userStore.js"
 
   export let element = null
 
