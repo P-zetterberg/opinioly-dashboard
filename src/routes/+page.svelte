@@ -1,10 +1,11 @@
 <script>
   import Waves from "../assets/waves.svelte"
+  import { userData } from "../userStore"
   export let data
 </script>
 
 {#if data.session}
-  <h1>Welcome {data.session.user.email}</h1>
+  <h1>Welcome logged in</h1>
 {:else}
   <h1>Welcome to SvelteKit</h1>
 {/if}

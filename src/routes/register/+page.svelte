@@ -11,8 +11,6 @@
 
   let email = "pontus@zetterberg.io"
   let password = "qew123w2"
-  let message = ""
-  let firstname = ""
 
   async function handleRegister() {
     try {
@@ -21,12 +19,14 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       })
 
       if (response.ok) {
-        goto("/new-url")
-      } else {
+        goto("/login")
       }
     } catch (error) {}
   }
@@ -34,18 +34,8 @@
 
 <main>
   <div class="form__container">
-    <form>
+    <form on:submit={handleRegister}>
       <h1>Create account</h1>
-      <div class="form__item">
-        <label for="firstname">First Name *</label>
-        <input
-          class="form__input"
-          required
-          type="text"
-          id="firstname"
-          bind:value={firstname}
-        />
-      </div>
       <div class="form__item">
         <label for="email">Email *</label>
         <input
@@ -68,7 +58,7 @@
         />
       </div>
 
-      <button class="submit" on:submit={handleRegister}>Sign up</button>
+      <button class="submit">Sign up</button>
     </form>
     <span class="login__redirect"
       >Already got an account? <a href="/login">Login here</a></span
@@ -143,7 +133,9 @@
     letter-spacing: 0.2em;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color ease-in 150ms, opacity ease-in 150ms;
+    transition:
+      background-color ease-in 150ms,
+      opacity ease-in 150ms;
     text-align: center;
     min-height: 45px;
     transition: scale ease-in 150ms;

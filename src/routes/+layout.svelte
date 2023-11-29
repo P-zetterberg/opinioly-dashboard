@@ -1,11 +1,29 @@
 <script>
   import "../global.scss"
   import brandLogo from "../assets/opinioly_small_height.svg"
+  import { userData } from "../../src/userStore.js"
+  import { onMount } from "svelte"
 
   export let data
 
-  let user = data?.session?.user?.email.split("@")[0]
-  let username = user?.charAt(0).toUpperCase() + user?.slice(1)
+  async function getUserData() {
+    const response = await fetch(
+      `http://localhost:3000/auth/get/${data?.session?.user?.id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    let res = await response.json()
+    $userData = res
+  }
+
+  onMount(() => {
+    if ($userData) return
+    if (data?.session) getUserData()
+  })
 </script>
 
 <svelte:head>
@@ -21,21 +39,27 @@
   />
 </svelte:head>
 <nav>
-  <a href="/"
+  <a href={!data?.session ? "/" : "/dashboard"}
     ><img src={brandLogo} width="150" alt="brand logo" class="logo" /></a
   >
   <div class="nav__items">
-    <a href="/">Home</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/features">Features</a>
-    <a href="/dashboard">Dashboard</a>
+    {#if !data?.session}
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/features">Features</a>
+      <a href="/dashboard">Dashboard</a>
+    {/if}
   </div>
   {#if data?.session}
     <form action="/logout" method="POST">
-      <button style="height:25px ;" type="submit">Logout</button>
+      <button
+        style="height:25px ;"
+        type="submit"
+        on:click={() => ($userData = null)}>Logout</button
+      >
     </form>
     <h4 class="welcome">
-      Welcome, {username}
+      Profile
       <span class="material-symbols-outlined icon"> expand_more </span>
     </h4>
   {:else}

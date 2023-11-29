@@ -12,11 +12,16 @@
   import ComponentRenderer from "./_components/componentRenderer.svelte"
   import { onMount } from "svelte"
   import Settings from "./_components/settings.svelte"
-  import { slide } from "svelte/transition"
+  import Loading from "$lib/loading.svelte"
+  import { userData } from "../../../userStore.js"
+
+  export let element = null
 
   let showSettings = true
+  let loading = false
   let foo
-  export let element = null
+  function handleCreate() {}
+
   onMount(async () => {
     Sortable.create(foo, {
       group: {
@@ -88,6 +93,13 @@
     </div>
   {/each}
 </div>
+<button class="create__btn" on:click={() => (loading = !loading)}>
+  {#if loading}
+    <span class="loader"><Loading /></span>
+  {:else}
+    Create widget
+  {/if}
+</button>
 
 <style lang="scss">
   .badge {
@@ -158,4 +170,21 @@
   // .hide {
   //   display: none;
   // }
+  .create__btn {
+    all: unset;
+    cursor: pointer;
+    background-color: #c2ebd1;
+    font-weight: 600;
+    padding: 0.5em;
+    margin-top: 1em;
+    transition: background-color 200ms ease-in-out;
+    align-self: flex-end;
+  }
+  .loader {
+    display: flex;
+    height: 25px;
+    width: 115px;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

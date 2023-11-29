@@ -21,6 +21,7 @@ export const actions = {
         message: "Something went wrong",
       })
     }
+
     throw redirect(303, "/")
   },
 }
