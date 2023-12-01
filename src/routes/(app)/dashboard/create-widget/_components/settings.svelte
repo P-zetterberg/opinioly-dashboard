@@ -198,5 +198,6 @@
     gap: 1em;
     flex-wrap: wrap;
     overflow: hidden;
+    padding: 0 0.5em;
   }
 </style>

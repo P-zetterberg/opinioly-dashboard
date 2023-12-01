@@ -15,7 +15,7 @@
   import Loading from "$lib/loading.svelte"
 
   export let element = null
-
+  export let userData
   let showSettings = true
   let loading = false
   let foo
@@ -31,7 +31,7 @@
           },
           body: JSON.stringify({
             data: $widgetData,
-            dashboardId: "",
+            dashboardId: userData.dashboardId,
           }),
         }
       )
@@ -66,9 +66,9 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="settings__container">
   <p class="badge title" on:click={() => (showSettings = !showSettings)}>
-    Settings <span class="material-symbols-outlined eye">
+    <span class="material-symbols-outlined eye">
       {showSettings ? "visibility" : "visibility_off"}
-    </span>
+    </span>Settings
   </p>
 
   <div class="settings">
@@ -76,7 +76,7 @@
   </div>
 </div>
 <span
-  style="margin-bottom:0.5em; {showSettings
+  style="margin-bottom:0.5em; font-weight:600; {showSettings
     ? 'margin-top: 1em;'
     : 'margin-top: 0;'}">Add element</span
 >
@@ -124,14 +124,15 @@
 
 <style lang="scss">
   .badge {
-    position: absolute;
+    position: static;
     top: 5px;
     margin: 0;
-    left: 5px;
-    opacity: 0.7;
+    left: 16px;
+    opacity: 1;
     background: #e7e6e6;
     padding: 0.2em 0.5em;
-    font-weight: 700;
+    font-weight: 600;
+    margin-bottom: 0.5em;
 
     &.title {
       display: flex;

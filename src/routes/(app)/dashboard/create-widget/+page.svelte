@@ -4,6 +4,7 @@
   import { onMount } from "svelte"
   import { browser } from "$app/environment"
 
+  export let data
   let element
   let id = "b303f712-1b7c-4165-a054-b733be36c996"
   let styles = ""
@@ -36,10 +37,10 @@
 </svelte:head>
 
 <main>
-  <h1>Create widget</h1>
   <a href="/dashboard" class="nav__btn">
     <span class="material-symbols-outlined"> arrow_back </span>Dashboard</a
   >
+  <h1>Create widget</h1>
   <div class="container">
     <div class="left__panel">
       <span class="badge">Preview</span>
@@ -54,7 +55,7 @@
       <CodeHighlight {code} /> -->
     </div>
     <div class="right__panel">
-      <RightSide {element} />
+      <RightSide {element} userData={data.userData} />
     </div>
   </div>
 </main>
@@ -69,7 +70,6 @@
     width: fit-content;
     padding: 0.3em;
     padding-right: 0.6em;
-    margin-bottom: 0.5em;
     display: flex;
     gap: 0.2em;
   }
@@ -97,9 +97,7 @@
     height: 100%;
     max-height: 630.6px;
     overflow-y: auto;
-  }
-  h1 {
-    margin-top: 1em;
+    height: auto;
   }
   .left__panel {
     // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 20px;

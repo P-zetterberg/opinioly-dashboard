@@ -41,13 +41,14 @@
     height: 100%;
     max-height: 630.6px;
     overflow-y: auto;
+    height: auto;
   }
   h1 {
-    margin-top: 1em;
+    margin-top: 0.5em;
   }
   .left__panel {
     // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 20px;
-    width: 190px;
+    width: 185px;
     height: 630.6px;
     background-color: #fcfcfc;
     display: flex;

@@ -64,6 +64,7 @@
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 1rem;
+    margin-bottom: 3em;
 
     a {
       transition: color 0.2s ease-in-out;
