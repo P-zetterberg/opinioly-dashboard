@@ -1,5 +1,4 @@
 <script>
-  import { userData } from "../userStore"
   export let data
 </script>
 

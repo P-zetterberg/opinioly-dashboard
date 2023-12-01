@@ -22,11 +22,6 @@ export const handle = async ({ event, resolve }) => {
     }
   )
 
-  /**
-   * a little helper that is written for convenience so that instead
-   * of calling `const { data: { session } } = await supabase.auth.getSession()`
-   * you just call this `await getSession()`
-   */
   event.locals.getSession = async () => {
     const {
       data: { session },
@@ -37,6 +32,21 @@ export const handle = async ({ event, resolve }) => {
   const isAuth = await event.locals.getSession()
 
   if (event.route.id.startsWith("/(app)")) {
+    //get user data from DB
+    if (isAuth) {
+      const response = await fetch(
+        `http://localhost:3000/auth/get/${isAuth?.user?.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      let res = (await response.json()) ?? []
+
+      event.locals.userData = res
+    }
     if (!isAuth) {
       throw redirect(303, "/")
     }

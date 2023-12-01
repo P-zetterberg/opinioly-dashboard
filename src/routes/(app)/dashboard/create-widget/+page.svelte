@@ -37,6 +37,9 @@
 
 <main>
   <h1>Create widget</h1>
+  <a href="/dashboard" class="nav__btn">
+    <span class="material-symbols-outlined"> arrow_back </span>Dashboard</a
+  >
   <div class="container">
     <div class="left__panel">
       <span class="badge">Preview</span>
@@ -58,6 +61,18 @@
 
 <style lang="scss">
   @import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-okaidia.min.css";
+  .nav__btn {
+    all: unset;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #edecec;
+    width: fit-content;
+    padding: 0.3em;
+    padding-right: 0.6em;
+    margin-bottom: 0.5em;
+    display: flex;
+    gap: 0.2em;
+  }
   main {
     display: flex;
     flex-direction: column;

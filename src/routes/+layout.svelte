@@ -1,30 +1,9 @@
 <script>
   import "../global.scss"
   import brandLogo from "../assets/opinioly_small_height.svg"
-  import { userData } from "../../src/userStore.js"
-  import { onMount } from "svelte"
   import Waves from "../assets/waves.svelte"
 
   export let data
-
-  async function getUserData() {
-    const response = await fetch(
-      `http://localhost:3000/auth/get/${data?.session?.user?.id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-    let res = await response.json()
-    $userData = res
-  }
-
-  onMount(() => {
-    if ($userData) return
-    if (data?.session) getUserData()
-  })
 </script>
 
 <svelte:head>
@@ -48,16 +27,14 @@
       <a href="/">Home</a>
       <a href="/pricing">Pricing</a>
       <a href="/features">Features</a>
-      <a href="/dashboard">Dashboard</a>
+      <a href="https://demo.opinioly.io">Demo</a>
+    {:else}
+      {data?.session?.user?.email}
     {/if}
   </div>
   {#if data?.session}
     <form action="/logout" method="POST">
-      <button
-        style="height:25px ;"
-        type="submit"
-        on:click={() => ($userData = null)}>Logout</button
-      >
+      <button style="height:25px ;" type="submit">Logout</button>
     </form>
     <h4 class="welcome">
       Profile

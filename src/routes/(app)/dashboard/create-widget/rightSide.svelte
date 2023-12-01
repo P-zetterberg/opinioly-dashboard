@@ -13,14 +13,35 @@
   import { onMount } from "svelte"
   import Settings from "./_components/settings.svelte"
   import Loading from "$lib/loading.svelte"
-  import { userData } from "../../../../userStore.js"
 
   export let element = null
 
   let showSettings = true
   let loading = false
   let foo
-  function handleCreate() {}
+  async function handleCreate() {
+    loading = true
+    try {
+      const response = await fetch(
+        "http://localhost:3000/dashboard/widget-create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data: $widgetData,
+            dashboardId: "",
+          }),
+        }
+      )
+
+      if (response.ok) {
+        loading = false
+        goto("/dashboard")
+      }
+    } catch (error) {}
+  }
 
   onMount(async () => {
     Sortable.create(foo, {
@@ -93,7 +114,7 @@
     </div>
   {/each}
 </div>
-<button class="create__btn" on:click={() => (loading = !loading)}>
+<button class="create__btn" on:click={() => handleCreate()}>
   {#if loading}
     <span class="loader"><Loading /></span>
   {:else}
