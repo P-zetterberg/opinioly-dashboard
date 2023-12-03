@@ -65,7 +65,7 @@
       <CodeHighlight {code} /> -->
     </div>
     <div class="right__panel">
-      <RightSide {element} userData={data.userData} />
+      <RightSide {element} userData={data.userData} {widgetName} />
     </div>
   </div>
 </main>

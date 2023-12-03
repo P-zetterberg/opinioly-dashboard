@@ -1,19 +1,12 @@
 <script>
-  import {
-    widgetData,
-    updateDataItemKey,
-    updateItem,
-    updateArrayOrder,
-    colorData,
-    addVar,
-    addElement,
-  } from "./dashBoardStore.js"
+  import { widgetData, updateArrayOrder, addElement } from "./dashBoardStore.js"
   import Sortable from "sortablejs/modular/sortable.complete.esm.js?module"
   import ComponentRenderer from "./_components/componentRenderer.svelte"
   import { onMount } from "svelte"
   import Settings from "./_components/settings.svelte"
   import Loading from "$lib/loading.svelte"
 
+  export let widgetName
   export let element = null
   export let userData
   let showSettings = true
@@ -32,6 +25,7 @@
           body: JSON.stringify({
             data: $widgetData,
             dashboardId: userData.dashboardId,
+            name: widgetName,
           }),
         }
       )
