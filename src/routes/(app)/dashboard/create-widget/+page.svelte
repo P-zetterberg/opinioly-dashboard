@@ -16,6 +16,7 @@
         widgetId="${id}"
         styles="${styles}">
   </op-widget>`
+  let widgetName = ""
 
   $: Object.entries($colorData).forEach(([key, value]) => {
     if (styles.includes(`${key}:`)) {
@@ -40,7 +41,16 @@
   <a href="/dashboard" class="nav__btn">
     <span class="material-symbols-outlined"> arrow_back </span>Dashboard</a
   >
-  <h1>Create widget</h1>
+  <div class="title">
+    <h1>Create widget |</h1>
+    <input
+      type="text"
+      class="w__name"
+      contenteditable="true"
+      bind:value={widgetName}
+      placeholder="Enter widget name"
+    />
+  </div>
   <div class="container">
     <div class="left__panel">
       <span class="badge">Preview</span>
@@ -62,6 +72,31 @@
 
 <style lang="scss">
   @import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-okaidia.min.css";
+  .title {
+    display: flex;
+    align-items: center;
+  }
+  h1 {
+    min-width: 248.5px;
+  }
+  .w__name {
+    font-size: 2rem;
+    padding: 0.2em;
+    font-weight: 700;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    &:focus {
+      outline: lightgrey 1px solid;
+    }
+    &:hover {
+      background-color: #e7e6e6;
+      opacity: 0.5;
+    }
+    &::placeholder {
+      opacity: 0.3;
+    }
+  }
   .nav__btn {
     all: unset;
     cursor: pointer;

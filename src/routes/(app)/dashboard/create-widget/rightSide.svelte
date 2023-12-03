@@ -66,9 +66,10 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="settings__container">
   <p class="badge title" on:click={() => (showSettings = !showSettings)}>
+    Settings
     <span class="material-symbols-outlined eye">
       {showSettings ? "visibility" : "visibility_off"}
-    </span>Settings
+    </span>
   </p>
 
   <div class="settings">
@@ -129,7 +130,8 @@
     margin: 0;
     left: 16px;
     opacity: 1;
-    background: #e7e6e6;
+    background: #f3f4f6;
+    border: 1px solid #dbdee4;
     padding: 0.2em 0.5em;
     font-weight: 600;
     margin-bottom: 0.5em;
@@ -145,6 +147,11 @@
   }
   .settings__container {
     margin-top: 2em;
+
+    .badge {
+      display: flex;
+      justify-content: space-between;
+    }
   }
   .elements {
     padding-top: 1em;
