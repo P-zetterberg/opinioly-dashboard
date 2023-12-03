@@ -49,6 +49,7 @@
       contenteditable="true"
       bind:value={widgetName}
       placeholder="Enter widget name"
+      spellcheck="false"
     />
   </div>
   <div class="container">
