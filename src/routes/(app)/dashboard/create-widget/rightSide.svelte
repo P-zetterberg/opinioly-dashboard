@@ -29,11 +29,11 @@
           }),
         }
       )
-
+      let res = await response.json()
       if (response.ok) {
         loading = false
         goto("/dashboard")
-      }
+      } else throw Error(res.message)
     } catch (error) {}
   }
 
@@ -120,15 +120,14 @@
 <style lang="scss">
   .badge {
     position: static;
-    top: 5px;
     margin: 0;
-    left: 16px;
     opacity: 1;
     background: #f3f4f6;
     border: 1px solid #dbdee4;
     padding: 0.2em 0.5em;
     font-weight: 600;
     margin-bottom: 0.5em;
+    height: 31.4px;
 
     &.title {
       display: flex;

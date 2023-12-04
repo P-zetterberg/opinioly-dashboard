@@ -2,6 +2,7 @@
   import { goto } from "$app/navigation"
   import Waves from "../../assets/waves.svelte"
   import { createClient } from "@supabase/supabase-js"
+  import { redirect } from "@sveltejs/kit"
 
   const supabaseUrl = "https://foebhsyjevotvveomyop.supabase.co"
   //This key is safe to expose on the client
@@ -26,7 +27,13 @@
       })
 
       if (response.ok) {
-        goto("/login")
+        const { data, error: err } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        })
+        if (err) {
+          goto("/login")
+        } else throw redirect(303, "/dashboard")
       }
     } catch (error) {}
   }
@@ -34,15 +41,16 @@
 
 <main>
   <div class="form__container">
-    <form on:submit={handleRegister}>
-      <h1>Create account</h1>
+    <form action="?/register" method="POST">
+      <h1>Sign up</h1>
       <div class="form__item">
-        <label for="email">Email *</label>
+        <label for="email">Email</label>
         <input
           class="form__input"
           required
           type="email"
           id="email"
+          name="email"
           bind:value={email}
         />
       </div>
@@ -52,6 +60,7 @@
         <input
           class="form__input"
           required
+          name="password"
           type="password"
           id="password"
           bind:value={password}

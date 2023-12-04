@@ -88,7 +88,7 @@
     border: none;
     width: 100%;
     &:focus {
-      outline: lightgrey 1px solid;
+      outline: none;
     }
     &:hover {
       background-color: #e7e6e6;

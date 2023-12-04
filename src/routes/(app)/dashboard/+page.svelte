@@ -10,7 +10,7 @@
     <div class="left__panel"></div>
     <div class="right__panel">
       {#each widgets as widget}
-        <a href={`dashboard/widget/${widget.id}`}>{widget.id}</a>
+        <a href={`dashboard/widget/${widget.name}`}>{widget.name}</a>
       {/each}
     </div>
   </div>
