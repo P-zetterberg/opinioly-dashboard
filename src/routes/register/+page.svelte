@@ -82,8 +82,6 @@
     justify-content: center;
     z-index: 999;
     position: relative;
-    margin: auto 0;
-    top: -2.5em;
 
     form {
       display: flex;
