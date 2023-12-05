@@ -109,7 +109,7 @@
     </div>
   {/each}
 </div>
-<button class="create__btn" on:click={() => handleCreate()}>
+<button class="create__btn">
   {#if loading}
     <span class="loader"><Loading /></span>
   {:else}

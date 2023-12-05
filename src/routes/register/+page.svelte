@@ -40,7 +40,8 @@
 
 <main>
   <div class="form__container">
-    <form action="?/register" method="POST">
+    <!-- action="?/register" method="POST" removed for demo -->
+    <form>
       <h1>Sign up</h1>
       <div class="form__item">
         <label for="email">Email</label>
