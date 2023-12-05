@@ -138,7 +138,8 @@
   .left__panel {
     // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 20px;
     width: 432px;
-    height: 630.6px;
+    min-height: 630.6px;
+    height: fit-content;
     background-color: #fcfcfc;
     display: flex;
     flex-direction: column;

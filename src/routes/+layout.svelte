@@ -109,7 +109,7 @@
   }
   footer {
     z-index: 99;
-    position: absolute;
+    position: static;
     bottom: 0;
     left: 10px;
     a,
@@ -117,6 +117,7 @@
       text-decoration: none;
       color: black;
       opacity: 0.3;
+      font-size: 12px;
     }
   }
 </style>
