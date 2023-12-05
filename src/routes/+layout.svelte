@@ -47,6 +47,7 @@
     </div>
   {/if}
 </nav>
+
 <slot />
 
 <Waves />

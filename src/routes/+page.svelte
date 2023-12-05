@@ -2,11 +2,13 @@
   export let data
 </script>
 
-{#if data.session}
-  <h1>Welcome logged in</h1>
-{:else}
-  <h1>Welcome to SvelteKit</h1>
-{/if}
+<main>
+  {#if data.session}
+    <h1>Welcome logged in</h1>
+  {:else}
+    <h1>Welcome to SvelteKit</h1>
+  {/if}
+</main>
 
 <style>
 </style>
