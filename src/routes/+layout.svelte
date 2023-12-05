@@ -47,9 +47,14 @@
     </div>
   {/if}
 </nav>
-
 <slot />
+
 <Waves />
+<footer>
+  <a href="/policy">Privacy policy</a>
+  <span>|</span>
+  <a href="/tos">Terms & conditions</a>
+</footer>
 
 <style lang="scss">
   h4 {
@@ -64,7 +69,6 @@
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 1rem;
-    margin-bottom: 3em;
 
     a {
       transition: color 0.2s ease-in-out;
@@ -102,5 +106,17 @@
   .welcome {
     display: flex;
     cursor: pointer;
+  }
+  footer {
+    z-index: 99;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    a,
+    span {
+      text-decoration: none;
+      color: black;
+      opacity: 0.3;
+    }
   }
 </style>

@@ -55,7 +55,7 @@
         />
       </div>
       <div class="form__item">
-        <label for="password">Password:</label>
+        <label for="password">Password</label>
         <input
           class="form__input"
           required
@@ -83,7 +83,8 @@
     justify-content: center;
     z-index: 999;
     position: relative;
-
+    margin: auto 0;
+    top: -2.5em;
     form {
       display: flex;
       flex-direction: column;

@@ -6,6 +6,10 @@ body {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 1em;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    gap: 5em;    
   }
   * {
     box-sizing: border-box;

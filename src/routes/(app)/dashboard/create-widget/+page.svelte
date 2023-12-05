@@ -91,7 +91,7 @@
       outline: none;
     }
     &:hover {
-      background-color: #e7e6e6;
+      background-color: #e7e6e686;
       opacity: 0.5;
     }
     &::placeholder {
