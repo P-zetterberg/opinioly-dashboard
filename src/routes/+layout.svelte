@@ -28,7 +28,7 @@
       <a href="/">Home</a>
       <a href="/pricing">Pricing</a>
       <a href="/features">Features</a>
-      <a href="/dashboard">Dashboard</a>
+      <a href="/dashboard/create-widget">Dashboard</a>
     {:else}
       {data?.session?.user?.email}
     {/if}
@@ -48,6 +48,7 @@
     </div>
   {/if}
 </nav>
+
 <slot />
 
 <Waves />
