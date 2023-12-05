@@ -78,7 +78,7 @@
       />
     </div>
     <div class="flex-col">
-      <label for="error">Button text</label>
+      <label for="error">Button text color</label>
       <input
         type="text"
         id="coloris-submit-text"
@@ -118,7 +118,7 @@
       />
     </div>
     <div class="flex-col">
-      <label for="button">Submit text</label>
+      <label for="button">Submit button text</label>
       <input
         class="input"
         type="text"
@@ -198,5 +198,6 @@
     gap: 1em;
     flex-wrap: wrap;
     overflow: hidden;
+    padding: 0 0.5em;
   }
 </style>

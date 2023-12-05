@@ -1,11 +1,9 @@
 <script>
   import "../global.scss"
   import brandLogo from "../assets/opinioly_small_height.svg"
+  import Waves from "../assets/waves.svelte"
 
   export let data
-
-  let user = data?.session?.user?.email.split("@")[0]
-  let username = user?.charAt(0).toUpperCase() + user?.slice(1)
 </script>
 
 <svelte:head>
@@ -21,22 +19,26 @@
   />
 </svelte:head>
 <nav>
-  <a href="/"
+  <a href={!data?.session ? "/" : "/dashboard"}
     ><img src={brandLogo} width="150" alt="brand logo" class="logo" /></a
   >
   DEMO
   <div class="nav__items">
-    <a href="/">Home</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/features">Features</a>
-    <a href="/dashboard">Dashboard</a>
+    {#if !data?.session}
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/features">Features</a>
+      <a href="https://demo.opinioly.io/dashboard">Demo</a>
+    {:else}
+      {data?.session?.user?.email}
+    {/if}
   </div>
   {#if data?.session}
     <form action="/logout" method="POST">
       <button style="height:25px ;" type="submit">Logout</button>
     </form>
     <h4 class="welcome">
-      Welcome, {username}
+      Profile
       <span class="material-symbols-outlined icon"> expand_more </span>
     </h4>
   {:else}
@@ -46,8 +48,14 @@
     </div>
   {/if}
 </nav>
-
 <slot />
+
+<Waves />
+<footer>
+  <a href="/policy">Privacy policy</a>
+  <span>|</span>
+  <a href="/tos">Terms & conditions</a>
+</footer>
 
 <style lang="scss">
   h4 {
@@ -99,5 +107,18 @@
   .welcome {
     display: flex;
     cursor: pointer;
+  }
+  footer {
+    z-index: 99;
+    position: static;
+    bottom: 0;
+    left: 10px;
+    a,
+    span {
+      text-decoration: none;
+      color: black;
+      opacity: 0.3;
+      font-size: 12px;
+    }
   }
 </style>

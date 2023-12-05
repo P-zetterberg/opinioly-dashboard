@@ -1,8 +1,8 @@
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ locals }) {
+export async function load({ params, locals }) {
   try {
     const response = await fetch(
-      `http://localhost:3000/dashboard/list-widgets?dashboardId=${locals.userData.dashboardId}`,
+      `http://localhost:3000/dashboard/list-feedback?dashboardId=${locals.userData.dashboardId}&name=${params.name}`,
       {
         method: "GET",
         headers: {
@@ -10,10 +10,13 @@ export async function load({ locals }) {
         },
       }
     )
-
     let res = await response.json()
+    console.log(res)
     return {
-      widgets: res,
+      widget: {
+        name: params.name,
+        data: res,
+      },
     }
   } catch (error) {}
 }

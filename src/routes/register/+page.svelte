@@ -1,7 +1,7 @@
 <script>
   import { goto } from "$app/navigation"
-  import Waves from "../../assets/waves.svelte"
   import { createClient } from "@supabase/supabase-js"
+  import { redirect } from "@sveltejs/kit"
 
   const supabaseUrl = "https://foebhsyjevotvveomyop.supabase.co"
   //This key is safe to expose on the client
@@ -9,10 +9,8 @@
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvZWJoc3lqZXZvdHZ2ZW9teW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTczNzA2ODYsImV4cCI6MjAxMjk0NjY4Nn0.scxVcnN2Q1Gx2cK38o-zn4sdUAy21Z63pRwaphbVLO0"
   const supabase = createClient(supabaseUrl, supabaseKey)
 
-  let email = ""
-  let password = ""
-  let message = ""
-  let firstname = ""
+  let email = "pontus@zetterberg.io"
+  let password = "qew123w2"
 
   async function handleRegister() {
     try {
@@ -21,12 +19,20 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       })
 
       if (response.ok) {
-        goto("/new-url")
-      } else {
+        const { data, error: err } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        })
+        if (err) {
+          goto("/login")
+        } else throw redirect(303, "/dashboard")
       }
     } catch (error) {}
   }
@@ -34,25 +40,16 @@
 
 <main>
   <div class="form__container">
-    <form>
-      <h1>Create account</h1>
+    <form action="?/register" method="POST">
+      <h1>Sign up</h1>
       <div class="form__item">
-        <label for="firstname">First Name *</label>
-        <input
-          class="form__input"
-          required
-          type="text"
-          id="firstname"
-          bind:value={firstname}
-        />
-      </div>
-      <div class="form__item">
-        <label for="email">Email *</label>
+        <label for="email">Email</label>
         <input
           class="form__input"
           required
           type="email"
           id="email"
+          name="email"
           bind:value={email}
         />
       </div>
@@ -62,6 +59,7 @@
         <input
           class="form__input"
           required
+          name="password"
           type="password"
           id="password"
           bind:value={password}
@@ -75,7 +73,6 @@
     >
   </div>
 </main>
-<Waves />
 
 <style lang="scss">
   main {
@@ -85,6 +82,8 @@
     justify-content: center;
     z-index: 999;
     position: relative;
+    margin: auto 0;
+    top: -2.5em;
 
     form {
       display: flex;

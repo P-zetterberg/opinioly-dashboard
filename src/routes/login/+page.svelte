@@ -1,6 +1,5 @@
 <script>
   import { goto } from "$app/navigation"
-  import Waves from "../../assets/waves.svelte"
   import { createClient } from "@supabase/supabase-js"
   import { onMount } from "svelte"
 
@@ -56,7 +55,7 @@
         />
       </div>
       <div class="form__item">
-        <label for="password">Password:</label>
+        <label for="password">Password</label>
         <input
           class="form__input"
           required
@@ -75,7 +74,6 @@
     >
   </div>
 </main>
-<Waves />
 
 <style lang="scss">
   main {
@@ -85,7 +83,8 @@
     justify-content: center;
     z-index: 999;
     position: relative;
-
+    margin: auto 0;
+    top: -2.5em;
     form {
       display: flex;
       flex-direction: column;

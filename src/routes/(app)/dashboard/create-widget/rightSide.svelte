@@ -1,22 +1,42 @@
 <script>
-  import {
-    widgetData,
-    updateDataItemKey,
-    updateItem,
-    updateArrayOrder,
-    colorData,
-    addVar,
-    addElement,
-  } from "./dashBoardStore.js"
+  import { widgetData, updateArrayOrder, addElement } from "./dashBoardStore.js"
   import Sortable from "sortablejs/modular/sortable.complete.esm.js?module"
   import ComponentRenderer from "./_components/componentRenderer.svelte"
   import { onMount } from "svelte"
   import Settings from "./_components/settings.svelte"
-  import { slide } from "svelte/transition"
+  import Loading from "$lib/loading.svelte"
 
-  let showSettings = true
-  let foo
+  export let widgetName
   export let element = null
+  export let userData
+  let showSettings = true
+  let loading = false
+  let foo
+  async function handleCreate() {
+    loading = true
+    try {
+      const response = await fetch(
+        "http://localhost:3000/dashboard/widget-create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data: $widgetData,
+            dashboardId: userData.dashboardId,
+            name: widgetName,
+          }),
+        }
+      )
+      let res = await response.json()
+      if (response.ok) {
+        loading = false
+        goto("/dashboard")
+      } else throw Error(res.message)
+    } catch (error) {}
+  }
+
   onMount(async () => {
     Sortable.create(foo, {
       group: {
@@ -40,7 +60,8 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="settings__container">
   <p class="badge title" on:click={() => (showSettings = !showSettings)}>
-    Settings <span class="material-symbols-outlined eye">
+    Settings
+    <span class="material-symbols-outlined eye">
       {showSettings ? "visibility" : "visibility_off"}
     </span>
   </p>
@@ -50,7 +71,7 @@
   </div>
 </div>
 <span
-  style="margin-bottom:0.5em; {showSettings
+  style="margin-bottom:0.5em; font-weight:600; {showSettings
     ? 'margin-top: 1em;'
     : 'margin-top: 0;'}">Add element</span
 >
@@ -88,17 +109,25 @@
     </div>
   {/each}
 </div>
+<button class="create__btn" on:click={() => handleCreate()}>
+  {#if loading}
+    <span class="loader"><Loading /></span>
+  {:else}
+    Create widget
+  {/if}
+</button>
 
 <style lang="scss">
   .badge {
-    position: absolute;
-    top: 5px;
+    position: static;
     margin: 0;
-    left: 5px;
-    opacity: 0.7;
-    background: #e7e6e6;
+    opacity: 1;
+    background: #f3f4f6;
+    border: 1px solid #dbdee4;
     padding: 0.2em 0.5em;
-    font-weight: 700;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    height: 31.4px;
 
     &.title {
       display: flex;
@@ -111,6 +140,11 @@
   }
   .settings__container {
     margin-top: 2em;
+
+    .badge {
+      display: flex;
+      justify-content: space-between;
+    }
   }
   .elements {
     padding-top: 1em;
@@ -158,4 +192,21 @@
   // .hide {
   //   display: none;
   // }
+  .create__btn {
+    all: unset;
+    cursor: pointer;
+    background-color: #c2ebd1;
+    font-weight: 600;
+    padding: 0.5em;
+    margin-top: 1em;
+    transition: background-color 200ms ease-in-out;
+    align-self: flex-end;
+  }
+  .loader {
+    display: flex;
+    height: 25px;
+    width: 115px;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

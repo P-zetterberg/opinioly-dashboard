@@ -58,10 +58,6 @@
   >{name}
   {#if label?.length || msg.length}-{/if}
   <span style="opacity:0.3;">{label ?? msg.slice(0, 20) + "..."}</span>
-
-  <span class="material-symbols-outlined icon">
-    {isOpen ? "expand_less" : "expand_more"}
-  </span>
   <span
     role="button"
     on:keypress={() => (showMenu = !showMenu)}
@@ -73,6 +69,9 @@
     class="material-symbols-outlined icon"
   >
     more_vert
+  </span>
+  <span class="material-symbols-outlined icon">
+    {isOpen ? "expand_less" : "expand_more"}
   </span>
 </label>
 {#if showMenu}
