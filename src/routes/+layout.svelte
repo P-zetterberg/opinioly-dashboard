@@ -27,7 +27,7 @@
       <a href="/">Home</a>
       <a href="/pricing">Pricing</a>
       <a href="/features">Features</a>
-      <a href="https://demo.opinioly.io/dashboard">Demo</a>
+      <a href="https://demo.opinioly.io/dashboard/create-widget">Demo</a>
     {:else}
       {data?.session?.user?.email}
     {/if}
